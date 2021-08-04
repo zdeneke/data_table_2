@@ -88,3 +88,8 @@ class DataTable2SimpleDemo extends StatelessWidget {
 
 ```
 If you're already using the standard widgets you can reference the package and add '2' to the names of stock widgets (making them **DataTable2** or **PaginatedDataTable2**) and that is it. 
+
+## Known issues
+
+- Setting `border` on tables makes it impossible to set row DataRow/DataRow2 color via `color` property.
+- Setting colors on DataRow/DataRow2 via `color` property disables hover color on rows. Same bug is present in Flutter's standard tables

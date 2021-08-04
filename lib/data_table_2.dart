@@ -371,7 +371,8 @@ class DataTable2 extends DataTable {
       label = GestureDetector(
         child: TableRowInkWell(
             child: label,
-            overlayColor: overlayColor,
+            overlayColor: MaterialStateProperty.all(Colors.amber),
+            //overlayColor: overlayColor,
             onTap: onRowTap == null
                 ? onSelectChanged
                 : () {

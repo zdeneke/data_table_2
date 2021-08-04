@@ -437,6 +437,12 @@ class DessertDataSource extends DataTableSource {
     return DataRow.byIndex(
       index: index,
       selected: dessert.selected,
+      color: MaterialStateProperty.resolveWith(
+          (states) => states.contains(MaterialState.hovered)
+              ? Colors.blue
+              : index % 2 == 0
+                  ? Colors.red
+                  : Colors.amber),
       onSelectChanged: (value) {
         if (dessert.selected != value) {
           _selectedCount += value! ? 1 : -1;
