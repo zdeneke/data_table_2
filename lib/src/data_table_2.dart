@@ -325,7 +325,11 @@ class DataTable2 extends DataTable {
     required bool numeric,
     required bool placeholder,
     required bool showEditIcon,
-    required VoidCallback? onTap,
+    required GestureTapCallback? onTap,
+    required GestureTapCallback? onDoubleTap,
+    required GestureLongPressCallback? onLongPress,
+    required GestureTapDownCallback? onTapDown,
+    required GestureTapCancelCallback? onTapCancel,
     required VoidCallback? onRowTap,
     required VoidCallback? onRowSecondaryTap,
     required GestureTapDownCallback? onRowSecondaryTapDown,
@@ -362,11 +366,19 @@ class DataTable2 extends DataTable {
         child: DropdownButtonHideUnderline(child: label),
       ),
     );
-    if (onTap != null) {
+    if (onTap != null ||
+        onDoubleTap != null ||
+        onLongPress != null ||
+        onTapDown != null ||
+        onTapCancel != null) {
       label = InkWell(
         onTap: onTap,
-        child: label,
+        onDoubleTap: onDoubleTap,
+        onLongPress: onLongPress,
+        onTapDown: onTapDown,
+        onTapCancel: onTapCancel,
         overlayColor: overlayColor,
+        child: label,
       );
     } else {
       label = GestureDetector(
@@ -631,6 +643,10 @@ class DataTable2 extends DataTable {
             placeholder: cell.placeholder,
             showEditIcon: cell.showEditIcon,
             onTap: cell.onTap,
+            onDoubleTap: cell.onDoubleTap,
+            onLongPress: cell.onLongPress,
+            onTapDown: cell.onTapDown,
+            onTapCancel: cell.onTapCancel,
             onRowTap: row is DataRow2 ? row.onTap : null,
             onRowSecondaryTap: row is DataRow2 ? row.onSecondaryTap : null,
             onRowSecondaryTapDown:
