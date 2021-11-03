@@ -510,8 +510,6 @@ class AsyncPaginatedDataTable2State extends PaginatedDataTable2State {
     if (_firstRowIndex >= _rowCount &&
         w.pageSyncApproach != PageSyncApproach.doNothing &&
         _firstRowIndex >= _effectiveRowsPerPage) {
-      // TODO test with 0 rows returned from data source
-
       if (w.pageSyncApproach == PageSyncApproach.goToFirst) {
         pageTo(0);
       } else {

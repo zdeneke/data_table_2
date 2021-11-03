@@ -587,7 +587,7 @@ class PaginatedDataTable2State extends State<PaginatedDataTable2> {
         // See https://material.io/design/components/data-tables.html#tables-within-cards
         style: _selectedRowCount > 0
             ? themeData.textTheme.subtitle1!
-                .copyWith(color: themeData.accentColor)
+                .copyWith(color: themeData.colorScheme.secondary)
             : themeData.textTheme.headline6!
                 .copyWith(fontWeight: FontWeight.w400),
         child: IconTheme.merge(

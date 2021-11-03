@@ -1092,9 +1092,9 @@ void main() {
     controller.setRowsPerPage(10);
     await tester.pumpAndSettle();
 
-    // peek into what text is visible
-    var d = find.byType(Text);
-    var w = tester.widgetList(d).toList();
+    // // peek into what text is visible
+    // var d = find.byType(Text);
+    // var w = tester.widgetList(d).toList();
 
     expect(
         find.byType(Text),
