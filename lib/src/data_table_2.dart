@@ -84,19 +84,19 @@ class DataRow2 extends DataRow {
             color: color,
             cells: cells);
 
-  /// Row tap handler
+  /// Row tap handler, won't be called if tapped cell has any tap event handlers
   final GestureTapCallback? onTap;
 
-  /// Row right click handler
+  /// Row right click handler, won't be called if tapped cell has any tap event handlers
   final GestureTapCallback? onSecondaryTap;
 
-  /// Row right mouse down handler
+  /// Row right mouse down handler, won't be called if tapped cell has any tap event handlers
   final GestureTapDownCallback? onSecondaryTapDown;
 
-  /// Row double tap handler
+  /// Row double tap handler, won't be called if tapped cell has any tap event handlers
   final GestureTapCallback? onDoubleTap;
 
-  /// Row long press handler
+  /// Row long press handler, won't be called if tapped cell has any tap event handlers
   final GestureLongPressCallback? onLongPress;
 }
 
