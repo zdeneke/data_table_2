@@ -305,6 +305,107 @@ void main() {
     log.clear();
   });
 
+  testWidgets('DataTable2 control test - row taps',
+      (WidgetTester tester) async {
+    final List<String> log = <String>[];
+
+    Widget buildTable({int? sortColumnIndex, bool sortAscending = true}) {
+      return DataTable2(
+        sortColumnIndex: sortColumnIndex,
+        sortAscending: sortAscending,
+        onSelectAll: (bool? value) {
+          log.add('select-all: $value');
+        },
+        columns: <DataColumn>[
+          const DataColumn(
+            label: Text('Name'),
+            tooltip: 'Name',
+          ),
+          DataColumn(
+            label: const Text('Calories'),
+            tooltip: 'Calories',
+            numeric: true,
+            onSort: (int columnIndex, bool ascending) {
+              log.add('column-sort: $columnIndex $ascending');
+            },
+          ),
+        ],
+        rows: kDesserts.map<DataRow2>((Dessert dessert) {
+          return DataRow2(
+            key: ValueKey<String>(dessert.name),
+            onSelectChanged: (bool? selected) {
+              log.add('row-selected: ${dessert.name}');
+            },
+            onTap: () {
+              log.add('row-tap: ${dessert.name}');
+            },
+            onSecondaryTap: () {
+              log.add('row-secondaryTap: ${dessert.name}');
+            },
+            onSecondaryTapDown: (_) {
+              log.add('row-secondaryTapDown: ${dessert.name}');
+            },
+            onDoubleTap: () {
+              log.add('row-doubleTap: ${dessert.name}');
+            },
+            onLongPress: () {
+              log.add('row-longPress: ${dessert.name}');
+            },
+            cells: <DataCell>[
+              DataCell(
+                Text(dessert.name),
+              ),
+              DataCell(
+                Text('${dessert.calories}'),
+              ),
+            ],
+          );
+        }).toList(),
+      );
+    }
+
+    await tester.pumpWidget(MaterialApp(
+      home: Material(child: buildTable()),
+    ));
+
+    await tester.tap(find.text('Cupcake'));
+    // Wait 500ms to get tap registered instead of double tap
+    await tester.pump(const Duration(milliseconds: 500));
+
+    expect(log, <String>['row-tap: Cupcake', 'row-selected: Cupcake']);
+    log.clear();
+
+    await tester.tap(find.text('305'));
+    // Wait 500ms to get tap registered instead of double tap
+    await tester.pump(const Duration(milliseconds: 500));
+
+    expect(log, <String>['row-tap: Cupcake', 'row-selected: Cupcake']);
+    log.clear();
+
+    await tester.tap(find.text('Cupcake'), buttons: kSecondaryMouseButton);
+
+    expect(log,
+        <String>['row-secondaryTapDown: Cupcake', 'row-secondaryTap: Cupcake']);
+    log.clear();
+
+    await tester.tap(find.text('305'), buttons: kSecondaryMouseButton);
+
+    expect(log,
+        <String>['row-secondaryTapDown: Cupcake', 'row-secondaryTap: Cupcake']);
+    log.clear();
+
+    await tester.tap(find.text('305'));
+    await tester.pump(const Duration(milliseconds: 100));
+    await tester.tap(find.text('305'));
+
+    expect(log, <String>['row-doubleTap: Cupcake']);
+    log.clear();
+
+    await tester.longPress(find.text('305'));
+    expect(log, <String>['row-longPress: Cupcake']);
+    log.clear();
+  });
+
   testWidgets('DataTable2 overflow test - header', (WidgetTester tester) async {
     await tester.pumpWidget(
       MaterialApp(
