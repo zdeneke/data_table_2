@@ -852,7 +852,7 @@ class _SortArrowState extends State<_SortArrow> with TickerProviderStateMixin {
   }
 
   static const double _arrowIconBaselineOffset = -1.5;
-  static const double _arrowIconSize = 20.0;
+  static const double _arrowIconSize = 25.0;
 
   @override
   Widget build(BuildContext context) {
