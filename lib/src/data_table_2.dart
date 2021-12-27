@@ -864,7 +864,7 @@ class _SortArrowState extends State<_SortArrow> with TickerProviderStateMixin {
               ..setTranslationRaw(0.0, _arrowIconBaselineOffset, 0.0),
         alignment: Alignment.center,
         child: const Icon(
-          Icons.arrow_upward,
+          Icons.arrow_drop_up_outlined,
           size: _arrowIconSize,
         ),
       ),
