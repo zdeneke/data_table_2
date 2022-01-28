@@ -23,7 +23,7 @@ enum ColumnSize { S, M, L }
 @immutable
 class DataColumn2 extends DataColumn {
   /// Creates the configuration for a column of a [DataTable2].
-  ///
+  ///InkWell
   /// The [label] argument must not be null.
   const DataColumn2(
       {required Widget label,
@@ -320,6 +320,7 @@ class DataTable2 extends DataTable {
     }
 
     label = InkWell(
+      splashFactory: NoSplash.splashFactory,
       onTap: onSort,
       overlayColor: overlayColor,
       child: label,
@@ -864,6 +865,7 @@ class _SortArrowState extends State<_SortArrow> with TickerProviderStateMixin {
               ..setTranslationRaw(0.0, _arrowIconBaselineOffset, 0.0),
         alignment: Alignment.center,
         child: const Icon(
+          color: Colors.white,
           Icons.arrow_drop_up_outlined,
           size: _arrowIconSize,
         ),
