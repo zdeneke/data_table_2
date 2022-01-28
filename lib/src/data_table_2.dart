@@ -320,7 +320,7 @@ class DataTable2 extends DataTable {
     }
 
     label = InkWell(
-      splashFactory: NoSplash.splashFactory
+      splashFactory: NoSplash.splashFactory,
       onTap: onSort,
       overlayColor: Colors.transparent,
       child: label,
